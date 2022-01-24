@@ -8,7 +8,7 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/l
 const canvasContainer = document.getElementById("canvasContainer");
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-camera.position.set(0, 0, 6);
+camera.position.set(0, 0, 12);
 camera.lookAt(scene.position);
 
 var renderer = new THREE.WebGLRenderer({
@@ -107,7 +107,7 @@ var blackGlobe = new THREE.Mesh(geom, new THREE.MeshStandardMaterial({
 blackGlobe.scale.setScalar(1);
 points.add(blackGlobe);
 
-points.position.set(0, -3.5, 0);
+points.position.set(0, 0, 0);
 
 
 // Create Atmosphere
@@ -136,11 +136,11 @@ const materialAtosphere = new THREE.ShaderMaterial( {
 } );
 
 const atmosphere = new THREE.Mesh(geometryAtmosphere, materialAtosphere);
-atmosphere.scale.set(1.15, 1.05, 1.15);
+atmosphere.scale.set(1.1, 1.1, 1.1);
 scene.add(atmosphere);
 
 
-atmosphere.position.set(0, -3.5, 0);
+atmosphere.position.set(0, 0, 0);
 
 
 // Create Stars
@@ -168,7 +168,7 @@ render();
 function render() {
   window.requestAnimationFrame(render);
   time += clock.getDelta();
-  //points.material.uniforms.shift.value = -time * 0.15;
+  points.material.uniforms.shift.value = -time * 0.15;
   
   renderer.render(scene, camera);
 }
